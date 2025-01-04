@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Password Reset</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f9;
+    }
+
+    .container {
+      display: flex;
+      background: #ffffff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+      height: 700px;
+    }
+
+    .left-section {
+      background: #4e8bd3;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+    }
+
+    .left-section img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .right-section {
+      padding: 20px;
+      flex: 1;
+    }
+
+    .right-section h2 {
+      text-align: center;
+      color: #555;
+      margin-bottom: 10px;
+    }
+
+    .right-section p {
+      text-align: center;
+      color: #777;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    .form-group input:focus {
+      border-color: #4e8bd3;
+      outline: none;
+    }
+
+    .captcha-box span {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    margin-right: 10px;
+    text-align: center;
+    margin-bottom: 15px;
+    
+
+  }
+
+    .captcha {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+
+    .captcha img {
+      height: 40px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 10px;
+      margin: 0 5px;
+      text-align: center;
+      color: white;
+      background-color: #4e8bd3;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #3a6f9f;
+    }
+
+    .btn.secondary {
+      background-color: #333;
+    }
+
+    .btn.secondary:hover {
+      background-color: #222;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="left-section">
+      <img src="img.png" alt="Warning Image">
+    </div>
+    <div class="right-section">
+      <img src="icon.png" alt="icon">
+
+      <h2>RESET PASSWORD</h2>
+      <p>Enter your email address and user ID to get your password.</p>
+      <form action="/reset-password" method="post">
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input type="text" id="userId" placeholder="Email" required>
+          <label for="user-id">User ID</label>
+          <input type="text" id="userId" placeholder="Enter User ID" required>
+          <label for="captcha">Enter Captcha</label><br><br><br>
+          <div class="captcha-box">
+            <span id="captchaValue">45855</span>
+          </div><br><br>
+          <input type="text" id="captcha" placeholder="Enter Captcha" required><br><br><br>
+        </div>
+        <button type="submit" class="btn">Get Password</button><br><br><br>
+        <div class="buttons">
+          <button type="button" class="btn secondary">Login</button>
+          <button type="button" class="btn">Register</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>
