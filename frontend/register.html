@@ -61,7 +61,7 @@
 <body>
     <div class="form-container">
         <h2>Register</h2>
-        <form action="/register" method="post">
+        <form onsubmit="registerUser(event)">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" required>
@@ -77,5 +77,30 @@
             <button type="submit" class="submit-btn">Register</button>
         </form>
     </div>
+    <script>
+        function registerUser(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const username = formData.get('username');
+            const email = formData.get('email');
+            const password = formData.get('password');
+            fetch('/register', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, email, password })
+            }).then(response => response.json()).then(data => {
+                if (data.success) {
+                    alert('Registration successful!');
+                } else {
+                    alert('Registration failed: ' + data.message);
+                }
+            }).catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred during registration.');
+            });
+        }
+    </script>
 </body>
 </html>
