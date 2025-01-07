@@ -14,6 +14,7 @@ app.get('/reg', (req, res) => {res.sendFile(path.resolve(__dirname, '../frontend
 app.get('/forgot', (req, res) => {res.sendFile(path.resolve(__dirname, '../frontend/forgot.html'));});
 
 app.put('/register', (req, res) => {register(req, res);});
+app.post('/login', (req, res) => {login(req, res);});
 
 start();
 async function start(){

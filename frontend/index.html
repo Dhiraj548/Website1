@@ -149,7 +149,38 @@
     </div>
   </div>
 
+  <script>
+    const loginForm = document.getElementById('loginForm');
+    const captchaValue = document.getElementById('captchaValue');
 
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const formData = new FormData(loginForm);
+      const userId = formData.get('userId');
+      const password = formData.get('password');
+      const captcha = formData.get('captcha');
+
+      fetch('/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          userId,
+          password,
+          captcha
+        })
+      }).then(res => res.json())
+        .then(data => {
+          if (data.success) {
+            alert('Login Successful');
+            window.location.href = '/dashboard';
+          } else {
+            alert('Login Failed');
+          }
+        });
+    });
+  </script>
 
 </body>
 
