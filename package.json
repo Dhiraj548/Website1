@@ -1,0 +1,30 @@
+{
+  "name": "website1",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/Dhiraj548/Website1#readme",
+  "bugs": {
+    "url": "https://github.com/Dhiraj548/Website1/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dhiraj548/Website1.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "backend/index.js",
+  "scripts": {
+    "start": "node backend/index.js",
+    "dev": "nodemon backend/index.js"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.9.3"
+  }
+}

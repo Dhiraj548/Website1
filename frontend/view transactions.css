@@ -1,0 +1,246 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #fefefe;
+    border-right: .1px solid #ccc;
+    height: 100vh;
+    position: fixed;
+    padding: 20px 10px;
+}
+
+.sidebar h2 {
+    color: #ff4d4f;
+    margin: 0 0 20px 0;
+}
+
+/* .sidebar a {
+    display: block;
+    color: #007bff;
+    text-decoration: none;
+    margin: 10px 0;
+    font-size: 16px;
+} */
+.one a{
+    display: block;
+    flex-direction: column;
+    color: white;
+    text-decoration: none;
+    margin: 10px 0px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.two a{
+    display: block;
+    color: black;
+    text-decoration: none;
+    margin: 10px 0;
+    font-size: 16px;
+    /* text-align: center; */
+}
+.three a{
+    display: block;
+    color: black;
+    text-decoration: none;
+    margin: 10px 0;
+    font-size: 16px;
+    text-align: center;
+}
+.four a{
+    display: block;
+    color: black;
+    text-decoration: none;
+    margin: 20px 0;
+    font-size: 16px;
+}
+.five a{
+    display: block;
+    color: black;
+    text-decoration: none;
+    margin: 20px 0;
+    font-size: 16px;
+
+}
+
+.content {
+    margin-left: 270px;
+    padding: 20px;
+}
+
+.header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 8px;
+}
+
+.dashboard-info {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.card {
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    width: 30%;
+}
+
+.card h3 {
+    margin: 10px 0;
+}
+
+.news {
+    margin-top: 20px;
+}
+
+.news table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.news th,
+.news td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+.news th {
+    background-color: #ff4d4f;
+    color: white;
+}
+
+.news td a {
+    color: #007bff;
+    text-decoration: none;
+}
+.Telegram{
+    width: 96%;
+    background-color: #0088cc;
+    color: white;
+    padding: 10px;
+    /* float: left; */
+    font-size: 18px;
+}
+.join-telegram{
+    background-color: #0088cc;
+    color: white;
+    width: 96%;
+    padding: 10px;
+    margin: 0px;
+    font-size: 18px;
+}
+.dashboard{
+    width: 96%;
+    background-color: #ff4f70;
+    color: white;
+    padding: 10px;
+    margin: 0px;
+    font-size: 18px;
+    height: 30px;
+    text-align: center;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+h3{
+    font-size: 13px;
+    margin: 30px 10px;
+}
+#after{
+    font-size: 18px;
+}
+#before{
+    font-size: 18px;
+}
+.roof{
+    display: flex;
+    justify-content: space-between;
+    height: 100px;
+    /* border: 2px solid black; */
+    margin: 30px 0px;
+    margin-top: 0px;
+}
+.box{
+    margin: 20px 0px;
+    display: flex;
+    justify-content: space-around;
+    /* border: 2px solid black; */
+    height: 50px;
+    width: 200px;
+}
+.bofd{
+    margin: 20px 0px;
+    /* display: flex; */
+    /* border: 2px solid black; */
+    height: 50px;
+    width: 215px;
+}
+.hr{
+    margin: 20px 0px;
+}
+.cgr{
+    margin: 12px 0px;
+    /* width: 100px; */
+    /* height: 20px; */
+}
+#guitar{
+    width: 80px;
+    height: 30px;
+    text-align: center;
+    border-radius: 15px;
+    background-color: white;
+    /* box-shadow: inset(2px, 2px, 2px, 2px, white); */
+}
+#miq{
+    font-size: 10px;
+}
+
+.container1 {
+    max-width: 1300px;
+    margin: auto;
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+.controls {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+table th, table td {
+    text-align: left;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+table td {
+    background-color: #fff;
+}
