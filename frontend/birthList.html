@@ -34,9 +34,9 @@
         <div class="three">
             <h3>Services</h3>
             <select name="#" id="before">
-                <option value=""><a href="birth certificate.html">Birth Certificate</a></option>
-                <option value="#"><a href="birth application.html">Birth Application</a></option>
-                <option value="#"><a href="birth list.html">Birth List</a></option>
+                <option value="/birthCert">Birth Certificate</option>
+                <option value="/birthApp">Birth Application</option>
+                <option value="/birthList" selected>Birth List</option>
             </select>
         </div>
         <br>
@@ -264,6 +264,11 @@
             </div>
         </div>
     </div>
+    <script>
+        document.getElementById('before').addEventListener('change', function () {
+            window.location.href = this.value;
+        });
+    </script>
 </body>
 
 </html>

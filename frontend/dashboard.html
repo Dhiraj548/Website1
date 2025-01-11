@@ -18,13 +18,13 @@
         </div>
         <!-- it is for payments content -->
         <div class="two">
-            <a href="dashboard.html" class="dashboard">Dashboard</a>
+            <a href="/dashboard" class="dashboard">Dashboard</a>
             <hr>
             <h3>Payments</h3>
             <select name="#" id="after">
-                <option value="wallet manage"><a href="wallet manage.html">wallet manage</a></option>
-                <option value="add money qr scen"><a href="add money qr scen.html">Add Money QR Scen</a></option>
-                <option value="manual fund reruest"><a href="manual fund reruest.html">Manual Fund Request</a></option>
+                <option value="wallet manage.html">Wallet Manage</option>
+                <option value="add money qr scen.html">Add Money QR Scen</option>
+                <option value="manual fund reruest.html">Manual Fund Request</option>
             </select>
             <a href="view transactions.html">View Transactions</a>
         </div>
@@ -34,10 +34,12 @@
         <div class="three">
             <h3>Services</h3>
             <select name="#" id="before">
-                <option value=""><a href="birth certificate.html">Birth Certificate</a></option>
-                <option value="#"><a href="birth application.html">Birth Application</a></option>
-                <option value="#"><a href="birth list.html">Birth List</a></option>
+                <option value="/dashboard">SELECT</option>
+                <!-- <option value="birth certificate.html">Birth Certificate</option>
+                <option value="birth application.html">Birth Application</option> -->
+                <option value="/birthList">Birth List</option>
             </select>
+
         </div>
         <br>
         <hr>
@@ -171,23 +173,24 @@
         </div>
     </div>
     <script>
+        document.getElementById('before').addEventListener('change', (event) => {
+            window.location.href = event.target.value;
+        });
         fetch('/profile', {
             method: 'POST',
             credentials: 'include'
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.redirectUrl) {
-                window.location.href = data.redirectUrl;
-            }
-            console.log(data);
-            
-            document.getElementById('balance').textContent = `₹ ${data.user.balance}`;
-            document.getElementById('name').textContent = data.user.username;
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+            .then(response => response.json())
+            .then(data => {
+                if (data.redirectUrl) {
+                    window.location.href = data.redirectUrl;
+                }
+                document.getElementById('balance').textContent = `₹ ${data.user.balance}`;
+                document.getElementById('name').textContent = data.user.username;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
     </script>
 </body>
 
