@@ -131,16 +131,16 @@
       <h2>Sign In</h2>
       <form id="loginForm">
         <label for="userId">Enter Your User ID</label>
-        <input type="text" id="userId" placeholder="Email, Username, or Phone" required>
+        <input type="text" id="userId" name="userId" placeholder="Email, Username, or Phone" required>
 
         <label for="password">Password</label>
-        <input type="password" id="password" placeholder="Password" required>
+        <input type="password" id="password" name="password" placeholder="Password" required>
 
         <label for="captcha">Enter Captcha</label><br>
         <div class="captcha-box">
           <span id="captchaValue">45855</span>
         </div><br>
-        <input type="text" id="captcha" placeholder="Enter Captcha" required>
+        <input type="text" id="captcha" name="captcha" placeholder="Enter Captcha" required>
 
         <button type="submit">Sign In</button><br><br>
         <button><a href="/forgot">Forgot Password</a></button><br><br>
@@ -150,13 +150,26 @@
   </div>
 
   <script>
+    fetch('/checkLoginStatus', {
+      method: 'POST',
+      headers: {
+      'Content-Type': 'application/json'
+      },
+      credentials: 'include'
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+      window.location.href = '/dashboard';
+      }
+    });
     const loginForm = document.getElementById('loginForm');
     const captchaValue = document.getElementById('captchaValue');
 
     loginForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const formData = new FormData(loginForm);
-      const userId = formData.get('userId');
+      const email = formData.get('userId');
       const password = formData.get('password');
       const captcha = formData.get('captcha');
 
@@ -166,17 +179,19 @@
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          userId,
+          email,
           password,
           captcha
         })
       }).then(res => res.json())
-        .then(data => {
+        .then(data => {          
           if (data.success) {
             alert('Login Successful');
             window.location.href = '/dashboard';
           } else {
             alert('Login Failed');
+            console.log(data.message);
+            
           }
         });
     });
