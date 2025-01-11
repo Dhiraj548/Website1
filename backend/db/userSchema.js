@@ -1,6 +1,14 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
+    applications: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Application'
+    }],
+    certificates: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Certificate'
+    }],
     username: {
         type: String,
         required: true,
