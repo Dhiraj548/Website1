@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="manual fund.css">
+    <link rel="stylesheet" href="manualAddMoney.css">
 </head>
 
 <body>
@@ -22,9 +22,9 @@
             <hr>
             <h3>Payments</h3>
             <select name="#" id="after">
-                <option value="wallet manage"><a href="wallet manage.html">wallet manage</a></option>
-                <option value="add money qr scen"><a href="add money qr scen.html">Add Money QR Scen</a></option>
-                <option value="manual fund reruest"><a href="manual fund reruest.html">Manual Fund Request</a></option>
+                <option value="/wallet">Wallet Manage</option>
+                <option value="/addMoney">Add Money QR Scen</option>
+                <option value="/manualAddMoney" selected>Manual Fund Request</option>
             </select>
             <a href="view transactions.html">View Transactions</a>
         </div>
@@ -34,9 +34,10 @@
         <div class="three">
             <h3>Services</h3>
             <select name="#" id="before">
-                <option value=""><a href="birth certificate.html">Birth Certificate</a></option>
-                <option value="#"><a href="birth application.html">Birth Application</a></option>
-                <option value="#"><a href="birth list.html">Birth List</a></option>
+                <option value="" disabled selected>SELECT</option>
+                <option value="/birthCert">Birth Certificate</option>
+                <option value="/birthApp">Birth Application</option>
+                <option value="/birthList">Birth List</option>
             </select>
         </div>
         <br>
@@ -124,13 +125,13 @@
             </div>
         </div>
         <hr class="hr">
-        <h1>Welcome Rani Kumari!</h1>
-        <p class="role">OPERATOR</p>
+        <h1 id="namme"></h1>
+        <p class="role" id="role"></p>
         <div class="container">
-            <form>
+            <form id="payreq">
                 <div class="form-group">
                     <label for="payment-type">Payment Type</label>
-                    <select id="payment-type">
+                    <select id="payment-type" name="payment-type">
                         <option value="UPI">UPI</option>
                         <option value="Net Banking">Net Banking</option>
                         <option value="Card">Card</option>
@@ -139,17 +140,17 @@
 
                 <div class="form-group">
                     <label for="utr">Enter UTR (Transaction ID)</label>
-                    <input type="text" id="utr" placeholder="Enter UTR Number">
+                    <input type="text" id="utr" name="utr" placeholder="Enter UTR Number">
                 </div>
 
                 <div class="form-group">
                     <label for="amount">Account Amount</label>
-                    <input type="number" id="amount" placeholder="Enter Amount">
+                    <input type="number" id="amount" name="amount" placeholder="Enter Amount">
                 </div>
 
                 <div class="form-group">
                     <label for="transaction-date">Transaction Date</label>
-                    <input type="date" id="transaction-date">
+                    <input type="date" id="transaction-date" name="transaction-date">
                 </div>
 
                 <button type="submit">Add Request</button>
@@ -167,7 +168,7 @@
                         <th>Status</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="transactions">
                     <tr>
                         <td>UPI</td>
                         <td>57675632676458</td>
@@ -180,7 +181,95 @@
         </div>
 
     </div>
+    <script>
+        document.getElementById('before').addEventListener('change', function () {
+            window.location.href = this.value;
+        });
+        document.getElementById('after').addEventListener('change', (event) => {
+            window.location.href = event.target.value;
+        });
 
+        fetch('/transactions', {
+            method: 'POST',
+            credentials: 'include'
+        })
+        .then(response => response.json())
+        .then(data => {
+            const transactionsTable = document.getElementById('transactions');
+            transactionsTable.innerHTML = '';
+            data.transactions.forEach(transaction => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${transaction.type}</td>
+                <td>${transaction.transactionId}</td>
+                <td>${transaction.amount}</td>
+                <td>${new Date(transaction.date).toLocaleDateString()}</td>
+                <td>${transaction.status}</td>
+            `;
+            transactionsTable.appendChild(row);
+            });
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
+
+
+        fetch('/profile', {
+            method: 'POST',
+            credentials: 'include'
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.redirectUrl) {
+                    window.location.href = data.redirectUrl;
+                }
+                document.getElementById('namme').textContent = `Welcome ${data.user.username}!`;
+                document.getElementById('role').textContent = data.user.role.toUpperCase();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+            document.querySelector('#payreq').addEventListener('submit', (event) => {
+                event.preventDefault();
+
+                const formData = new FormData(event.target);
+                const paymentType = formData.get('payment-type');
+                const utr = formData.get('utr');
+                const amount = formData.get('amount');
+                const transactionDate = formData.get('transaction-date');
+
+                const requestData = {
+                paymentType,
+                utr,
+                amount,
+                transactionDate
+                };
+                console.log(requestData);
+                
+
+                fetch('/payreq', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestData),
+                credentials: 'include'
+                })
+                .then(response => response.json())
+                .then(data => {
+                if (data.success) {
+                    alert('Payment request added successfully!');
+                    window.location.reload();
+                } else {
+                    alert('Failed to add payment request.');
+                }
+                })
+                .catch(error => {
+                console.error('Error:', error);
+                });
+            });
+    </script>
 </body>
 
 </html>

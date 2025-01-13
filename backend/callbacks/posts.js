@@ -133,10 +133,23 @@ async function logout(req, res, message) {
     return res.status(200).json({ ...msg, redirectUrl: '/' });
 }
 
+async function getTransactions(req, res) {
+    try {
+        const user = await User.findOne({ email: req.user.email }).populate('transactions');
+        if (!user) {
+            return res.status(404).json(failedRes('User not found'));
+        }
+        return res.status(200).json({ ...successRes('Transactions fetched successfully'), transactions: user.transactions });
+    } catch (error) {
+        return res.status(500).json(failedRes(`Error: ${error}`));
+    }
+}
+
 module.exports = {
     login,
     checkLogin, 
     getProfile,
     logout,
-    addBirthApplication
+    addBirthApplication, 
+    getTransactions
 };

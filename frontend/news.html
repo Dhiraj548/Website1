@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="sign in.css">
+    <link rel="stylesheet" href="news.css">
 </head>
 
 <body>
@@ -22,9 +22,9 @@
             <hr>
             <h3>Payments</h3>
             <select name="#" id="after">
-                <option value="wallet manage"><a href="wallet manage.html">wallet manage</a></option>
-                <option value="add money qr scen"><a href="add money qr scen.html">Add Money QR Scen</a></option>
-                <option value="manual fund reruest"><a href="manual fund reruest.html">Manual Fund Request</a></option>
+                <option value="/wallet">Wallet Manage</option>
+                <option value="/addMoney">Add Money QR Scen</option>
+                <option value="/manualAddMoney">Manual Fund Request</option>
             </select>
             <a href="view transactions.html">View Transactions</a>
         </div>
@@ -34,9 +34,10 @@
         <div class="three">
             <h3>Services</h3>
             <select name="#" id="before">
-                <option value=""><a href="birth certificate.html">Birth Certificate</a></option>
-                <option value="#"><a href="birth application.html">Birth Application</a></option>
-                <option value="#"><a href="birth list.html">Birth List</a></option>
+                <option value="/news">SELECT</option>
+                <option value="/birthCert">Birth Certificate</option>
+                <option value="/birthApp">Birth Application</option>
+                <option value="/birthList">Birth List</option>
             </select>
         </div>
         <br>
@@ -45,7 +46,7 @@
         <!-- it is for website content -->
         <div class="four">
             <h3>Website</h3>
-            <a href="view news.html" class="view-news">View News</a>
+            <a href="/news" class="view-news">View News</a>
         </div>
         <hr>
 
@@ -124,52 +125,49 @@
             </div>
         </div>
         <hr class="hr">
-        <div class="header">
-            <div>
-                <h3>
-                    Please make a payment above the minimum of 180, if anyone makes a payment below that, it will not be
-                    added to your wallet.
-                </h3>
-            </div>
-            <div>
-                <h3>
-                    कृपया न्यूनतम 180 से अधिक का भुगतान करें, यदि कोई इससे कम भुगतान करता है, तो वह आपके वॉलेट में नहीं
-                    जोड़ा जाएगा।
-                </h3>
-            </div>
-        </div>
-        <div class="dashboard-info">
-            <div class="card">
-                <h3>₹ 170</h3>
-                <p>Wallet Balance</p>
-            </div>
-            <div class="card">
-                <h3>Rani Kumari</h3>
-                <p>Your Name</p>
-            </div>
-            <div class="card">
-                <h3>Minimum Wallet Balance</h3>
-                <p>200</p>
-            </div>
-        </div>
-        <div class="news">
-            <h3>Recent News</h3>
-            <table>
-                <tr>
-                    <th>#</th>
-                    <th>News</th>
-                    <th>Link</th>
-                    <th>Date and Time</th>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>सभी यूजर को सूचित किया जाता है कि टेलीग्राम ग्रुप ज्वॉइन करें कभी वेबसाइट चेंज</td>
-                    <td><a href="#">Link</a></td>
-                    <td>25/06/2023</td>
-                </tr>
+        <div class="container1">
+            <h1>Recent News</h1>
+            <p>View the most recent news here.</p>
+            <table class="news-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>News</th>
+                        <th>Link</th>
+                        <th>Date and Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>HOSPITAL ADD KARWANE KE LIYE BIRTH CERTIFICATE PDF EMAIL I'D PAR SEND KIJIYE</td>
+                        <td>help.crsorgigoov@gmail.com</td>
+                        <td>17/09/2022</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>सभी यूजर को सूचित किया जाता है कि वॉलेट संबंधित जो भी प्रॉब्लम है कृपया टेलीग्राम में मैसेज करें</td>
+                        <td></td>
+                        <td>20/06/2023</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>सभी यूजर को सूचित किया जाता है कि टेलीग्राम ग्रुप ज्वॉइन करें कभी वेबसाइट चेंज होता है तो वेबसाइट का यूआरएल टेलीग्राम ग्रुप में ही सेंड किया जाता है</td>
+                        <td></td>
+                        <td>25/06/2023</td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     </div>
+    <script>
+        document.getElementById('before').addEventListener('change', function () {
+            window.location.href = this.value;
+        });
+        document.getElementById('after').addEventListener('change', (event) => {
+            window.location.href = event.target.value;
+        });
+    </script>
 </body>
 
 </html>

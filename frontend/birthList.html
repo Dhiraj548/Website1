@@ -18,13 +18,13 @@
         </div>
         <!-- it is for payments content -->
         <div class="two">
-            <a href="dashboard.html" class="dashboard">Dashboard</a>
+            <a href="/dashboard" class="dashboard">Dashboard</a>
             <hr>
             <h3>Payments</h3>
             <select name="#" id="after">
-                <option value="wallet manage"><a href="wallet manage.html">wallet manage</a></option>
-                <option value="add money qr scen"><a href="add money qr scen.html">Add Money QR Scen</a></option>
-                <option value="manual fund reruest"><a href="manual fund reruest.html">Manual Fund Request</a></option>
+                <option value="/wallet">Wallet Manage</option>
+                <option value="/addMoney">Add Money QR Scen</option>
+                <option value="/manualAddMoney">Manual Fund Request</option>
             </select>
             <a href="view transactions.html">View Transactions</a>
         </div>
@@ -45,7 +45,7 @@
         <!-- it is for website content -->
         <div class="four">
             <h3>Website</h3>
-            <a href="view news.html" class="view-news">View News</a>
+            <a href="/news" class="view-news">View News</a>
         </div>
         <hr>
 
@@ -267,6 +267,9 @@
     <script>
         document.getElementById('before').addEventListener('change', function () {
             window.location.href = this.value;
+        });
+        document.getElementById('after').addEventListener('change', (event) => {
+            window.location.href = event.target.value;
         });
     </script>
 </body>

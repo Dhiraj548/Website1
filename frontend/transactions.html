@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="view news.css">
+    <link rel="stylesheet" href="transactions.css">
 </head>
 
 <body>
@@ -124,41 +124,65 @@
             </div>
         </div>
         <hr class="hr">
+        <h1>Welcome!</h1>
+
         <div class="container1">
-            <h1>Recent News</h1>
-            <p>View the most recent news here.</p>
-            <table class="news-table">
+            <h2>Recent Transactions</h2>
+            <div class="controls">
+                <label for="entries">Show
+                    <select id="entries">
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                    </select> entries
+                </label>
+                <label for="search">Search:
+                    <input type="text" id="search" placeholder="Search...">
+                </label>
+            </div>
+            <table>
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>News</th>
-                        <th>Link</th>
-                        <th>Date and Time</th>
+                        <th>Account/UPI</th>
+                        <th>UTR</th>
+                        <th>Amount</th>
+                        <th>Transaction Date</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>HOSPITAL ADD KARWANE KE LIYE BIRTH CERTIFICATE PDF EMAIL I'D PAR SEND KIJIYE</td>
-                        <td>help.crsorgigoov@gmail.com</td>
-                        <td>17/09/2022</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>सभी यूजर को सूचित किया जाता है कि वॉलेट संबंधित जो भी प्रॉब्लम है कृपया टेलीग्राम में मैसेज करें</td>
-                        <td></td>
-                        <td>20/06/2023</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>सभी यूजर को सूचित किया जाता है कि टेलीग्राम ग्रुप ज्वॉइन करें कभी वेबसाइट चेंज होता है तो वेबसाइट का यूआरएल टेलीग्राम ग्रुप में ही सेंड किया जाता है</td>
-                        <td></td>
-                        <td>25/06/2023</td>
-                    </tr>
+                <tbody id="transactions">
+                    
                 </tbody>
             </table>
         </div>
+
     </div>
+
+    <script>
+        fetch('/transactions', {
+            method: 'POST',
+            credentials: 'include'
+        })
+        .then(response => response.json())
+        .then(data => {
+            const transactionsTable = document.getElementById('transactions');
+            transactionsTable.innerHTML = '';
+            data.transactions.forEach(transaction => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${transaction.type}</td>
+                <td>${transaction.transactionId}</td>
+                <td>${transaction.amount}</td>
+                <td>${new Date(transaction.date).toLocaleDateString()}</td>
+                <td>${transaction.status}</td>
+            `;
+            transactionsTable.appendChild(row);
+            });
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    </script>
 </body>
 
 </html>
