@@ -9,6 +9,10 @@ const userSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Certificate'
     }],
+    transactions: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Transaction'
+    }],
     username: {
         type: String,
         required: true,
@@ -28,6 +32,10 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    role: {
+        type: String,
+        default: 'user'
     },
     createdAt: {
         type: Date,

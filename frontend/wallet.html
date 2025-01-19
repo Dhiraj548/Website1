@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="view transactions.css">
+    <link rel="stylesheet" href="walletManage.css">
 </head>
 
 <body>
@@ -18,13 +18,13 @@
         </div>
         <!-- it is for payments content -->
         <div class="two">
-            <a href="dashboard.html" class="dashboard">Dashboard</a>
+            <a href="/dashboard" class="dashboard">Dashboard</a>
             <hr>
             <h3>Payments</h3>
             <select name="#" id="after">
-                <option value="wallet manage"><a href="wallet manage.html">wallet manage</a></option>
-                <option value="add money qr scen"><a href="add money qr scen.html">Add Money QR Scen</a></option>
-                <option value="manual fund reruest"><a href="manual fund reruest.html">Manual Fund Request</a></option>
+                <option value="/wallet">Wallet Manage</option>
+                <option value="/addMoney">Add Money QR Scen</option>
+                <option value="/manualAddMoney">Manual Fund Request</option>
             </select>
             <a href="view transactions.html">View Transactions</a>
         </div>
@@ -34,9 +34,10 @@
         <div class="three">
             <h3>Services</h3>
             <select name="#" id="before">
-                <option value=""><a href="birth certificate.html">Birth Certificate</a></option>
-                <option value="#"><a href="birth application.html">Birth Application</a></option>
-                <option value="#"><a href="birth list.html">Birth List</a></option>
+                <option value="/news">SELECT</option>
+                <option value="/birthCert">Birth Certificate</option>
+                <option value="/birthApp">Birth Application</option>
+                <option value="/birthList">Birth List</option>
             </select>
         </div>
         <br>
@@ -124,81 +125,75 @@
             </div>
         </div>
         <hr class="hr">
-        <h1>Welcome!</h1>
-
-        <div class="container1">
-            <h2>Recent Transactions</h2>
-            <div class="controls">
-                <label for="entries">Show
-                    <select id="entries">
-                        <option value="10">10</option>
-                        <option value="25">25</option>
-                        <option value="50">50</option>
-                    </select> entries
-                </label>
-                <label for="search">Search:
-                    <input type="text" id="search" placeholder="Search...">
-                </label>
+        <div class="header">
+            <div>
+                <h3>
+                    Please make a payment above the minimum of 180, if anyone makes a payment below that, it will not be
+                    added to your wallet.
+                </h3>
             </div>
+            <div>
+                <h3>
+                    कृपया न्यूनतम 180 से अधिक का भुगतान करें, यदि कोई इससे कम भुगतान करता है, तो वह आपके वॉलेट में नहीं
+                    जोड़ा जाएगा।
+                </h3>
+            </div>
+        </div>
+        <div class="dashboard-info">
+            <div class="card">
+                <h3 id="balance">₹ 0</h3>
+                <p>Wallet Balance</p>
+            </div>
+            <div class="card">
+                <h3 id="name"></h3>
+                <p>Your Name</p>
+            </div>
+            <div class="card">
+                <h3>Minimum Wallet Balance</h3>
+                <p>200</p>
+            </div>
+        </div>
+        <div class="news">
+            <h3>Recent News</h3>
             <table>
-                <thead>
-                    <tr>
-                        <th>Invoice No.</th>
-                        <th>Order ID</th>
-                        <th>Payment Method</th>
-                        <th>Amount</th>
-                        <th>Date & Time</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>74138</td>
-                        <td>290167870863</td>
-                        <td>Paytm</td>
-                        <td>180.00</td>
-                        <td>25-11-2024 04:49 pm</td>
-                    </tr>
-                    <tr>
-                        <td>73714</td>
-                        <td>432389608087</td>
-                        <td>Paytm</td>
-                        <td>180.00</td>
-                        <td>18-11-2024 05:35 pm</td>
-                    </tr>
-                    <tr>
-                        <td>73218</td>
-                        <td>468279977411</td>
-                        <td>Paytm</td>
-                        <td>180.00</td>
-                        <td>11-11-2024 11:03 am</td>
-                    </tr>
-                    <tr>
-                        <td>72072</td>
-                        <td>429772669258</td>
-                        <td>Paytm</td>
-                        <td>180.00</td>
-                        <td>23-10-2024 02:28 pm</td>
-                    </tr>
-                    <tr>
-                        <td>72054</td>
-                        <td>466328071361</td>
-                        <td>Paytm</td>
-                        <td>180.00</td>
-                        <td>23-10-2024 12:56 pm</td>
-                    </tr>
-                    <tr>
-                        <td>55897</td>
-                        <td>A9c4b347c9e9b43be8</td>
-                        <td>Paytm</td>
-                        <td>200.00</td>
-                        <td>07-06-2024 11:07 am</td>
-                    </tr>
-                </tbody>
+                <tr>
+                    <th>#</th>
+                    <th>News</th>
+                    <th>Link</th>
+                    <th>Date and Time</th>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>सभी यूजर को सूचित किया जाता है कि टेलीग्राम ग्रुप ज्वॉइन करें कभी वेबसाइट चेंज</td>
+                    <td><a href="#">Link</a></td>
+                    <td>25/06/2023</td>
+                </tr>
             </table>
         </div>
-
     </div>
-
+    <script>
+        document.getElementById('before').addEventListener('change', (event) => {
+            window.location.href = event.target.value;
+        });
+        document.getElementById('after').addEventListener('change', (event) => {
+            window.location.href = event.target.value;
+        });
+        fetch('/profile', {
+            method: 'POST',
+            credentials: 'include'
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.redirectUrl) {
+                    window.location.href = data.redirectUrl;
+                }
+                document.getElementById('balance').textContent = `₹ ${data.user.balance}`;
+                document.getElementById('name').textContent = data.user.username;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    </script>
 </body>
 
 </html>
